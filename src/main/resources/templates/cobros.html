@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AlphaGym - Registrar Compras</title>
+    <style>
+        /* Estilos del layout existentes */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-image: url(alphaa.jpg);
+            background-size: cover;
+            background-position: center;
+            color: black;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        .container {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: black;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #fff;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        nav {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            color: #fff;
+            text-transform: uppercase;
+            font-size: 18px;
+            text-decoration: none;
+            padding: 10px;
+            transition: color 0.3s, background-color 0.3s;
+            border-radius: 8px;
+        }
+
+        nav a:hover {
+            background-color: #444;
+            color: #fff;
+        }
+
+        .main-content {
+            width: 100%;
+            max-width: 1200px;
+            padding: 80px 20px;
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .main-content h1 {
+            font-size: 36px;
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+        /* Estilos del formulario */
+        .form-container {
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+            max-width: 600px;
+            margin: auto;
+        }
+
+        .form-container h2 {
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            color: #ddd;
+            margin-bottom: 5px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .form-group input[type="submit"] {
+            background-color: #ff6600;
+            color: #fff;
+            cursor: pointer;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .form-group input[type="submit"]:hover {
+            background-color: #cc5200;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .cliente-info {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+<!-- Contenedor del menú -->
+<div class="container">
+    <div class="logo">
+        AlphaGym
+    </div>
+    <nav>
+        <a href="#">Inicio</a>
+        <a href="form.html">+Cliente</a>
+        <a href="#">Cobros</a>
+        <a href="#">Buscar Cliente</a>
+    </nav>
+</div>
+
+<!-- Contenido principal -->
+<div class="main-content">
+    <h1>Registro de Compras</h1>
+    <div class="form-container">
+        <!-- Formulario de búsqueda de cliente -->
+        <h2>Buscar Cliente</h2>
+        <div class="form-group">
+            <label for="documento">Documento del Cliente:</label>
+            <input type="text" id="documento" name="documento" placeholder="Ingresa el documento del cliente" required>
+        </div>
+        <div class="form-group">
+            <input type="button" id="buscarCliente" value="Buscar Cliente">
+        </div>
+
+        <!-- Información del cliente encontrado -->
+        <div id="clienteInfo" class="cliente-info hidden">
+            <h3>Información del Cliente</h3>
+            <p><strong>Nombre:</strong> <span id="clienteNombre"></span></p>
+            <p><strong>Apellido:</strong> <span id="clienteApellido"></span></p>
+            <p><strong>Celular:</strong> <span id="clienteCelular"></span></p>
+        </div>
+
+        <!-- Formulario de compra (oculto inicialmente) -->
+        <form id="formCompra" action="/cobros" method="POST" class="hidden">
+            <h2>Formulario de Compras</h2>
+            <div class="form-group">
+                <label for="producto">Producto (Ej. Bebida, Snack):</label>
+                <input type="text" id="producto" name="producto" placeholder="Nombre del producto" required>
+            </div>
+            <div class="form-group">
+                <label for="cantidad">Cantidad:</label>
+                <input type="number" id="cantidad" name="cantidad" placeholder="Cantidad" min="1" required>
+            </div>
+            <div class="form-group">
+                <label for="precio">Precio($):</label>
+                <input type="number" id="precio" name="precio" placeholder="Precio unitario" min="0.01" step="0.01" required>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Registrar Compra">
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Script para manejar la búsqueda del cliente -->
+<script>
+    document.getElementById('buscarCliente').addEventListener('click', function () {
+        const documento = document.getElementById('documento').value;
+
+        // Simulación de búsqueda de cliente (puedes reemplazar esto con una llamada a tu API)
+        const clientes = [
+            { documento: '12345678', nombre: 'Juan', apellido: 'Pérez', celular: '555-1234' },
+            { documento: '87654321', nombre: 'Ana', apellido: 'Gómez', celular: '555-5678' }
+        ];
+
+        const clienteEncontrado = clientes.find(cliente => cliente.documento === documento);
+
+        if (clienteEncontrado) {
+            // Mostrar información del cliente
+            document.getElementById('clienteNombre').textContent = clienteEncontrado.nombre;
+            document.getElementById('clienteApellido').textContent = clienteEncontrado.apellido;
+            document.getElementById('clienteCelular').textContent = clienteEncontrado.celular;
+            document.getElementById('clienteInfo').classList.remove('hidden');
+
+            // Mostrar formulario de compra
+            document.getElementById('formCompra').classList.remove('hidden');
+        } else {
+            alert('Cliente no encontrado. Verifica el documento ingresado.');
+        }
+    });
+</script>
+</body>
+</html>

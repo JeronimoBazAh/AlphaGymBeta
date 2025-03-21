@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro Gimnasio</title>
+  <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            background-image: url('alphaa.jpg'); /* Asegúrate de que la imagen esté en el mismo directorio que tu archivo HTML */
+            background-size: cover;
+            background-position: center;
+            color: ;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+        }
+        /* Estilo del contenedor del menú */
+        .container {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: black; /* Fondo negro con opacidad */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+            position: fixed; /* Fija la barra en la parte superior */
+            top: 0;
+            left: 0;
+        }
+        /* Estilo del logo lateral izquierdo */
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #fff;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        /* Estilo del menú horizontal */
+        nav {
+            display: flex;
+            gap: 30px;
+        }
+        nav a {
+            color: #fff;
+            text-transform: uppercase;
+            font-size: 18px;
+            text-decoration: none;
+            padding: 10px;
+            transition: color 0.3s, background-color 0.3s;
+            border-radius: 8px;
+        }
+        nav a:hover {
+            background-color: #444;
+            color: #fff;
+        }
+        /* Estilo del formulario */
+        .form-container {
+            background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco con algo de opacidad */
+            padding: 30px; /* Ajustar el padding para que sea más pequeño */
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            width: 90%; /* Ajustar el ancho del formulario */
+            max-width: 500px; /* Cambiar el tamaño máximo */
+            margin-top: 80px; /* Espacio para evitar superposición con la barra */
+            margin-left: 20px; /* Desplazar el formulario un poco a la derecha */
+            border: 1px solid #333;
+        }
+        .form-container h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 28px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        .form-container label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .form-container input, .form-container select {
+            width: 100%;
+            padding: 14px;
+            margin-bottom: 20px;
+            border: 1px solid #000;
+            border-radius: 8px;
+            font-size: 16px;
+            background-color: #f7f7f7;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+        .form-container input:focus, .form-container select:focus {
+            border-color: #000;
+            outline: none;
+            background-color: #fff;
+        }
+        .form-container button {
+            width: 100%;
+            background-color: #000;
+            color: white;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            text-transform: uppercase;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .form-container button:hover {
+            background-color: #444;
+            transform: scale(1.05);
+        }
+        .form-container button:active {
+            background-color: #222;
+        }
+        /* Diseño responsive */
+        @media (max-width: 768px) {
+            .form-container {
+                padding: 20px;
+                margin-left: 0; /* Quitar el margen a la izquierda en pantallas pequeñas */
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- Contenedor del menú -->
+<div class="container">
+  <div class="logo">
+    AlphaGym
+  </div>
+  <nav>
+    <a href="#">Inicio</a>
+    <a href="#">+Cliente</a>
+    <a href="#">Cobros</a>
+
+    <a href="#">Buscar Cliente</a>
+  </nav>
+</div>
+
+<!-- Contenedor del formulario -->
+<div class="form-container">
+  <h2>Registro Cliente</h2>
+  <form action="/users" method="POST">
+    <label for="documento">Documento:</label>
+    <input type="text" id="documento" name="documento" required>
+
+    <label for="nombre">Nombre:</label>
+    <input type="text" id="nombre" name="nombre" required>
+
+    <label for="apellido">Apellido:</label>
+    <input type="text" id="apellido" name="apellido" required>
+
+    <label for="celular">Celular:</label>
+    <input type="tel" id="celular" name="celular" required>
+
+
+    <label for="sexo">Sexo:</label>
+    <select id="sexo" name="sexo" required>
+      <option value="masculino">Masculino</option>
+      <option value="femenino">Femenino</option>
+      <option value="x">X</option>
+    </select>
+
+    <button type="submit">Registrar</button>
+  </form>
+</div>
+</body>
+</html>
