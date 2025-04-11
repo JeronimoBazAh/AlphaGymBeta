@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -157,6 +157,9 @@
 <div class="main-content">
     <h1>Registro de Compras</h1>
     <div class="form-container">
+        <h2 th:text="${mensaje}"></h2>
+
+        <form id="buscar" action="/users/cliente" method="POST" >
         <!-- Formulario de búsqueda de cliente -->
         <h2>Buscar Cliente</h2>
         <div class="form-group">
@@ -164,16 +167,13 @@
             <input type="text" id="documento" name="documento" placeholder="Ingresa el documento del cliente" required>
         </div>
         <div class="form-group">
-            <input type="button" id="buscarCliente" value="Buscar Cliente">
+            <input type="submit" value="Buscar Cliente">
         </div>
+        </form>
+
 
         <!-- Información del cliente encontrado -->
-        <div id="clienteInfo" class="cliente-info hidden">
-            <h3>Información del Cliente</h3>
-            <p><strong>Nombre:</strong> <span id="clienteNombre"></span></p>
-            <p><strong>Apellido:</strong> <span id="clienteApellido"></span></p>
-            <p><strong>Celular:</strong> <span id="clienteCelular"></span></p>
-        </div>
+
 
         <!-- Formulario de compra (oculto inicialmente) -->
         <form id="formCompra" action="/cobros" method="POST" class="hidden">
@@ -197,32 +197,6 @@
     </div>
 </div>
 
-<!-- Script para manejar la búsqueda del cliente -->
-<script>
-    document.getElementById('buscarCliente').addEventListener('click', function () {
-        const documento = document.getElementById('documento').value;
 
-        // Simulación de búsqueda de cliente (puedes reemplazar esto con una llamada a tu API)
-        const clientes = [
-            { documento: '12345678', nombre: 'Juan', apellido: 'Pérez', celular: '555-1234' },
-            { documento: '87654321', nombre: 'Ana', apellido: 'Gómez', celular: '555-5678' }
-        ];
-
-        const clienteEncontrado = clientes.find(cliente => cliente.documento === documento);
-
-        if (clienteEncontrado) {
-            // Mostrar información del cliente
-            document.getElementById('clienteNombre').textContent = clienteEncontrado.nombre;
-            document.getElementById('clienteApellido').textContent = clienteEncontrado.apellido;
-            document.getElementById('clienteCelular').textContent = clienteEncontrado.celular;
-            document.getElementById('clienteInfo').classList.remove('hidden');
-
-            // Mostrar formulario de compra
-            document.getElementById('formCompra').classList.remove('hidden');
-        } else {
-            alert('Cliente no encontrado. Verifica el documento ingresado.');
-        }
-    });
-</script>
 </body>
 </html>

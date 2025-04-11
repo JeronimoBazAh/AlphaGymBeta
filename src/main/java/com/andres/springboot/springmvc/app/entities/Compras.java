@@ -22,7 +22,7 @@ public class Compras {
 
       // Relación con Cliente
     @Column(name = "cliente_id") // Nombre correcto en la base de datos
-    private Long cliente;
+    private Integer cliente;
 
     @Column(name = "fechaCompra")
     private LocalDate fecha;
@@ -30,7 +30,7 @@ public class Compras {
     public Compras() {
     }
 
-    public Compras(Integer id, String producto, Integer cantidad, Double precio, Long cliente) {
+    public Compras(Integer id, String producto, Integer cantidad, Double precio, Integer cliente) {
         this.id = id;
         this.producto = producto;
         this.cantidad = cantidad;
@@ -57,8 +57,8 @@ public class Compras {
     public void setCantidad(Integer cantidad) { this.cantidad = cantidad; }
     public Double getPrecio() { return precio; }
     public void setPrecio(Double precio) { this.precio = precio; }
-    public Long getCliente() { return cliente; }
-    public void setCliente(Long cliente) { this.cliente = cliente; }
+    public Integer getCliente() { return cliente; }
+    public void setCliente(Integer cliente) { this.cliente = cliente; }
     public LocalDate getFecha() { return fecha; }
     public void setFecha(LocalDate fecha) { this.fecha = fecha; }
 }

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Información del Cliente</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            background-image: url('alpha.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+        }
+        .container {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: black;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #fff;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        nav {
+            display: flex;
+            gap: 30px;
+        }
+        nav a {
+            color: #fff;
+            text-transform: uppercase;
+            font-size: 18px;
+            text-decoration: none;
+            padding: 10px;
+            border-radius: 8px;
+        }
+        nav a:hover {
+            background-color: #444;
+        }
+        .info-container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            width: 90%;
+            max-width: 500px;
+            margin-top: 80px;
+            border: 1px solid #333;
+        }
+        .info-container h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 28px;
+        }
+        .info-container p {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .btn-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .btn-container button {
+            flex: 1;
+            margin: 5px;
+            background-color: #000;
+            color: white;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .btn-container button:hover {
+            background-color: #444;
+        }
+  </style>
+</head>
+<body>
+<div class="container">
+    <div class="logo">AlphaGym</div>
+    <nav>
+        <a href="#">Inicio</a>
+        <a href="#">+Cliente</a>
+        <a href="#">Cobros</a>
+        <a href="#">Buscar Cliente</a>
+    </nav>
+</div>
+
+<div class="info-container">
+    <h2>Información del Cliente</h2>
+    <p><strong>Nombre:</strong> <span th:text="${cliente.nombre}"></span> </p>
+    <p><strong>Documento:</strong> <span th:text="${cliente.documento}"></span></p>
+    <p><strong>Celular:</strong> <span th:text="${cliente.celular}"></span></p>
+    <p><strong>Sexo:</strong> <span th:text="${cliente.sexo}"></span></p>
+
+    <div class="btn-container">
+        <a href="/compras/compra">
+            <button onclick="agregarCompra()">Agregar Compra</button>
+
+        </a>
+        <button onclick="pagarMensualidad()">Pagar Mensualidad</button>
+    </div>
+</div>
+
+
+</body>
+</html>

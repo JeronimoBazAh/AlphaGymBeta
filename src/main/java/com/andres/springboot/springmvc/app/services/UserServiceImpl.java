@@ -25,6 +25,13 @@ public class UserServiceImpl implements Service<Cliente> {
 
     @Transactional(readOnly = true)
     @Override
+    public Optional<Cliente> findByDocumento(String documento){
+        return repository.findByDocumento(documento);
+    };
+
+
+    @Transactional(readOnly = true)
+    @Override
     public Optional<Cliente> findById(Integer id) {
         return repository.findById(id);
     }

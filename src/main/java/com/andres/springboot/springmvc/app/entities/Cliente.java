@@ -30,16 +30,16 @@ public class Cliente {
     private Integer id;
 
     @NotEmpty
-    @Column(name = "Documento")
+    @Column(name = "documento")
     private String documento;
 
     @NotEmpty
-    @Column(name = "Nombre")
+    @Column(name = "nombre")
     private String nombre;
-    @Column(name = "Apellido")
+    @Column(name = "apellido")
     @NotEmpty
     private String apellido;
-    @Column(name = "Celular")
+    @Column(name = "celular")
 
     @NotEmpty
     private String celular;
@@ -55,7 +55,7 @@ public class Cliente {
         this.sexo = sexo;
     }
 
-    @Column(name="Sexo")
+    @Column(name="sexo")
     private String sexo;
 
     @PrePersist

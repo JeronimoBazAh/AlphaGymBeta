@@ -27,6 +27,11 @@ public class ComprasService implements Service<Compras>{
     }
 
     @Override
+    public Optional<Cliente> findByDocumento(String documento) {
+        return Optional.empty();
+    }
+
+    @Override
     public Optional<Compras> findById(Integer id) {
         return Optional.empty();
     }

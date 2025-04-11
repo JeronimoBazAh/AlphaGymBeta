@@ -62,7 +62,7 @@ public class UserController {
         }
     }
 
-    @PostMapping
+    @PostMapping("/algo")
     public String form(@Valid Cliente user, BindingResult result, Model model, RedirectAttributes redirect, SessionStatus status) {
 
         if(result.hasErrors()){
@@ -96,6 +96,25 @@ public class UserController {
                 " no existe en el sistema");
         return "redirect:/users";
 
+    }
+    @GetMapping("/buscar")
+    public String buscar(){
+
+        return "buscarCliente.html";
+    }
+    @PostMapping("/cliente")
+    public String buscar(@RequestParam("documento") String documento, Model model, RedirectAttributes redirect){
+
+        Optional<Cliente> a = service.findByDocumento(documento);
+
+        if (a.isEmpty()){
+            redirect.addFlashAttribute("mensaje","No se ha encontrado el cliente");
+            model.addAttribute("mensaje","No se ha encontrado el cliente");
+            return "redirect:/users/buscar";
+        }
+        model.addAttribute("cliente",a.get());
+        System.out.println(a);
+        return "clientes.html";
     }
 
 }
