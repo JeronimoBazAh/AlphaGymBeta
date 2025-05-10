@@ -1,10 +1,211 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Algo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AlphaGym - Registrar Compras</title>
+    <style>
+        /* ... tus estilos originales, intactos ... */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-image: url(alphaa.jpg);
+            background-size: cover;
+            background-position: center;
+            color: black;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        .container {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: black;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #fff;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        nav {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            color: #fff;
+            text-transform: uppercase;
+            font-size: 18px;
+            text-decoration: none;
+            padding: 10px;
+            transition: color 0.3s, background-color 0.3s;
+            border-radius: 8px;
+        }
+
+        nav a:hover {
+            background-color: #444;
+            color: #fff;
+        }
+
+        .main-content {
+            width: 100%;
+            max-width: 1200px;
+            padding: 80px 20px;
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .main-content h1 {
+            font-size: 36px;
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+        .form-container {
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+            max-width: 600px;
+            margin: auto;
+        }
+
+        .form-container h2 {
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            color: #ddd;
+            margin-bottom: 5px;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .form-group input[type="submit"] {
+            background-color: #ff6600;
+            color: #fff;
+            cursor: pointer;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .form-group input[type="submit"]:hover {
+            background-color: #cc5200;
+        }
+
+        .cliente-info {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+    </style>
 </head>
 <body>
+<div class="container">
+    <div class="logo">
+        AlphaGym
+    </div>
+    <nav>
+        <a href="#">Inicio</a>
+        <a href="form.html">+Cliente</a>
+        <a href="#">Cobros</a>
+        <a href="#">Buscar Cliente</a>
+    </nav>
+</div>
 
+<div class="main-content">
+    <h1>Registro de Compras</h1>
+    <div class="form-container">
+        <h2 th:text="${mensaje}"></h2>
+
+        <!-- Buscar cliente -->
+
+
+        <!-- Info cliente (a completar dinámicamente) -->
+        <div class="cliente-info">
+            <p><strong>Nombre:</strong> Juan Pérez</p>
+            <p><strong>ID Cliente:</strong> 10234</p>
+        </div>
+
+        <!-- Formulario de compras -->
+        <form id="formCompra" action="/cobros" method="POST">
+            <h2>Formulario de Compras</h2>
+
+            <div class="form-group">
+                <label for="producto">Producto:</label>
+                <select id="producto" name="producto" required>
+                    <option value="">Selecciona un producto</option>
+                    <option value="Bebida energética">Bebida energética ($300)</option>
+                    <option value="Barra de proteína">Barra de proteína ($500)</option>
+                    <option value="Toalla">Toalla ($700)</option>
+                    <option value="Entrenamiento Personal">Entrenamiento Personal ($2000)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="cantidad">Cantidad:</label>
+                <input type="number" id="cantidad" name="cantidad" min="1" required>
+            </div>
+
+            <div class="form-group">
+                <label for="precio">Precio unitario ($):</label>
+                <input type="number" id="precio" name="precio" min="0.01" step="0.01" required>
+            </div>
+
+            <div class="form-group">
+                <label for="metodoPago">Método de Pago:</label>
+                <select id="metodoPago" name="metodoPago" required>
+                    <option value="Efectivo">Efectivo</option>
+                    <option value="Tarjeta">Tarjeta</option>
+                    <option value="Mercado Pago">Mercado Pago</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="fecha">Fecha de Compra:</label>
+                <input type="date" id="fecha" name="fecha" required>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Registrar Compra">
+            </div>
+        </form>
+    </div>
+</div>
 </body>
 </html>
