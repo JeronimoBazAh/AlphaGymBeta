@@ -1,12 +1,10 @@
 package com.andres.springboot.springmvc.app.entities;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.Size;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Entity
 @Table(name="clientes")
@@ -29,6 +27,7 @@ public class Cliente {
     @Column(name = "ID")
     private Integer id;
 
+    @NotBlank(message = "El documento es obligatorio")
     @NotEmpty
     @Column(name = "documento")
     private String documento;

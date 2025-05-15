@@ -23,13 +23,6 @@ public class UserController {
         this.service = service;
     }
 
-    @GetMapping("/view")
-    public String viewData(Model model) {
-        model.addAttribute("title", "Hola Mundo Spring Boot!!!");
-        model.addAttribute("message", "Esta es una aplicación de ejemplo usando Spring Boot!!!");
-        //model.addAttribute("user", new Cliente("Andres", "Guzman"));
-        return "view.html";
-    }
 
     @GetMapping
     public String list(Model model) {
@@ -45,6 +38,7 @@ public class UserController {
         return "form";
     }
 
+    /*
     @GetMapping("/form/{id}")
     public String form(@PathVariable Integer id, Model model, RedirectAttributes redirect) {
         Optional<Cliente> optionalUser = service.findById(id);
@@ -62,8 +56,16 @@ public class UserController {
         }
     }
 
+     */
+
+    @GetMapping("/vista")
+    public String asd(Model model){
+
+
+        return "vista";
+    }
     @PostMapping("/algo")
-    public String form(@Valid Cliente user, BindingResult result, Model model, RedirectAttributes redirect, SessionStatus status) {
+    public String form(@Valid @ModelAttribute("user") Cliente user, BindingResult result, Model model, RedirectAttributes redirect, SessionStatus status) {
 
         if(result.hasErrors()){
             model.addAttribute("title", "Validando Formulario");
@@ -75,10 +77,21 @@ public class UserController {
                 user.getNombre() +
                 " se ha creado con exito!";
 
-        service.save(user);
-        status.setComplete();
+        if(user.getDocumento() != null){
+            Optional<Cliente> existe = service.findByDocumento(user.getDocumento());
+            if(existe.isPresent()){
+                result.rejectValue("documento","error.documento","El documento ya esta registrado");
+                return "form";
+            }else{
+                service.save(user);
+                status.setComplete();
+            }
+
+        }
+
+
         redirect.addFlashAttribute("success", message);
-        return "redirect:/view";
+        return "redirect:/users/vista";
     }
 
     @GetMapping("/delete/{id}")

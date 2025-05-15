@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -150,9 +150,11 @@
 <!-- Contenedor del formulario -->
 <div class="form-container">
   <h2>Registro Cliente</h2>
-  <form action="/users" method="POST">
+  <form th:action="@{/users/algo}" th:object="${user}" method="POST">
+
     <label for="documento">Documento:</label>
-    <input type="text" id="documento" name="documento" required>
+    <input type="text" th:field="*{documento}" id="documento" name="documento" required>
+    <div th:if="${#fields.hasErrors('documento')}" th:errors="*{documento}" class="text-danger"></div>
 
     <label for="nombre">Nombre:</label>
     <input type="text" id="nombre" name="nombre" required>
